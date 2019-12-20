@@ -16,6 +16,7 @@
     "require-dev": {
         "toast/unit": "^2.0",
         "gentry/gentry": "^0.13.12",
-        "gentry/toast": "^0.1.1"
+        "gentry/toast": "^0.1.1",
+        "ornament/core": "^0.14.0"
     }
 }
