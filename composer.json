@@ -1,0 +1,18 @@
+{
+    "name": "monolyth/lodger",
+    "description": "Codger recipes for Monolyth components",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marijn Ophorst",
+            "email": "marijn@monomelodies.nl"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "toast/unit": "^2.0",
+        "gentry/gentry": "^0.13.12",
+        "gentry/toast": "^0.1.1"
+    }
+}
