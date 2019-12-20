@@ -1,0 +1,12 @@
+{{ "{% extends 'template.html.twig' %}" }}
+
+{{ '{% block title %}' }}Details of {{ thing }}{{ '{% endblock title %}' }}
+
+{{ '{% block content %}' }}
+    <article>
+        {{ '{% for property, value in ' ~ thing ~ ' %}' }}
+            {{ '{{ property }}: {{ value }}<br>' }}
+        {{ '{% endfor %}' }}
+    </article>
+{{ '{% endblock content %}' }}
+

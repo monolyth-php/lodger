@@ -1,0 +1,12 @@
+{{ "{% extends 'template.html.twig' %}" }}
+
+{{ '{% block title %}' }}List of {{ things }}{{ '{% endblock title %}' }}
+
+{{ '{% block content %}' }}
+    <ul>
+        {{ '{% for ' ~ thing ~ ' in ' ~ things ~' %}' }}
+            <li><a href="{{ ("{{ url('" ~ type ~ "-details', {id: " ~ thing ~ ".id}) }}") | raw }}">{{ '{{' }} {{ thing }}.id {{ '}}' }}</a></li>
+        {{ '{% endfor %}' }}
+    </ul>
+{{ '{% endblock content %}' }}
+

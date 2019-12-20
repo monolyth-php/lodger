@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ '{% block title %}404 - Page not found{% endblock %}' }} - {{ project }}</title>
+        <meta name="generator" content="Monolyth 7">
+        <meta charset="utf-8">
+        <meta name="keywords" content="{{ '{% block keywords %}{% endblock %}' }}">
+        <meta name="description" content="{{ '{% block description %}{% endblock %}' }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <link rel="stylesheet" href="{{ "{{ version('/css/required.css') }}" }}">
+        <link rel="preload" href="{{ "{{ version('/css/optional.css') }}" }}" as="style" onload="this.rel = 'stylesheet'">
+        <noscript><link rel="stylesheet" href="{{ "{{ version('/css/optional.css') }}" }}"></noscript>
+        <base href="/">
+        <link rel="apple-touch-icon" sizes="57x57" href="/css/apple.57.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/css/apple.72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/css/apple.114.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/css/apple.144.png">
+    </head>
+    <body>
+        <header>
+            <a href="{{ "{{ url('home') }}" }}">{{ project }}</a>
+            <nav>
+                <ul>
+{% for module in modules %}
+                    <li><a href="{{ ("{{ url('" ~ (module | normalize) ~ "-list') }}") | raw }}">{{ module }}</a></li>
+{% endfor %}
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {{ '{% block content %}' }}
+                <article>
+                    <h1>404 - page not found</h1>
+                </article>
+            {{ '{% endblock content %}' }}
+        </main>
+        <footer>
+            &copy; Sensi Media
+        </footer>
+        <script src="{{ "{{ version('/js/bundle.js') }}" }}" async></script>
+        {% if env.dev and not env.test %}<script src="{{ env.host }}:{{ env.lrport }}/livereload.js"></script>{% endif %}
+    </body>
+</html>
+
