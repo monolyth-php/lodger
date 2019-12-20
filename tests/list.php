@@ -35,7 +35,8 @@ EOT
 
     /** Creates a template */
     yield function () use ($inout, $recipe) {
-        $recipe->call('Foo');
+        $bootstrap = new Codger\Generate\Bootstrap('list');
+        $recipe->call($bootstrap, 'Foo');
         $result = $inout->flush();
         assert(strpos($result, <<<EOT
 {% extends 'template.html.twig' %}
@@ -55,7 +56,8 @@ EOT
     
     /** Creates a view */
     yield function () use ($inout, $recipe) {
-        $result = $recipe->call('Foo')->render();
+        $bootstrap = new Codger\Generate\Bootstrap('list');
+        $result = $recipe->call($bootstrap, 'Foo')->render();
         assert(strpos($result, <<<EOT
 namespace Foo;
 
