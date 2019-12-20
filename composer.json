@@ -9,7 +9,9 @@
             "email": "marijn@monomelodies.nl"
         }
     ],
-    "require": {},
+    "require": {
+        "codger/php": "^0.7.4"
+    },
     "require-dev": {
         "toast/unit": "^2.0",
         "gentry/gentry": "^0.13.12",
