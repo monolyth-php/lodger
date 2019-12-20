@@ -8,8 +8,8 @@ $inout = Wrapper::createObject(Codger\Generate\FakeInOut::class);
 Codger\Generate\Recipe::setInOut($inout);
 
 /** Test detail recipe */
-return function ($test) use ($inout, $recipe) : Generator {
-    $test->beforeEach(function () use (&$dir) {
+return function () use ($inout, $recipe) : Generator {
+    $this->beforeEach(function () use (&$dir) {
         $dir = getcwd();
         chdir(getcwd().'/tmp');
         file_put_contents(getcwd().'/composer.json', <<<EOT
@@ -29,7 +29,7 @@ return function ($test) use ($inout, $recipe) : Generator {
 EOT
         );
     });
-    $test->afterEach(function () use (&$dir) {
+    $this->afterEach(function () use (&$dir) {
         chdir($dir);
     });
 
