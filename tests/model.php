@@ -12,6 +12,7 @@ return function () use ($recipe, $inout) : Generator {
     $bootstrap = new Codger\Generate\Bootstrap('model');
     /** The recipe should make us a basic model according to our parameters */
     yield function () use ($recipe, $inout, $bootstrap) {
+        $bootstrap->resetOptions();
         $bootstrap->setOptions(['^prefill', '^ornament']);
         $result = $recipe->call($bootstrap, 'User')->render();
         assert(strpos($result, <<<EOT
@@ -27,6 +28,7 @@ EOT
     yield function () use ($recipe, $inout, $bootstrap) {
         $db = new PDO('pgsql:dbname=codger_test', 'codger_test', 'blarps');
         $db->exec(file_get_contents(dirname(__DIR__).'/info/fixture.sql'));
+        $bootstrap->resetOptions();
         $bootstrap->setOptions(['prefill', '^ornament']);
         $result = $recipe->call($bootstrap, 'Users', 'users', 'pgsql', 'codger_test', 'blarps')->render();
         assert(strpos($result, <<<EOT
