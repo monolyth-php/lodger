@@ -1,14 +1,14 @@
 <?php
 
 use Gentry\Gentry\Wrapper;
+use Codger\Lodger\Listing\{ View, Template };
 
 putenv("CODGER_DRY=1");
-$recipe = include 'recipes/list/Recipe.php';
 $inout = Wrapper::createObject(Codger\Generate\FakeInOut::class);
 Codger\Generate\Recipe::setInOut($inout);
 
 /** Test list recipe */
-return function () use ($inout, $recipe) : Generator {
+return function () : Generator {
     $this->beforeEach(function () use (&$dir) {
         $dir = getcwd();
         chdir(getcwd().'/tmp');
@@ -34,10 +34,10 @@ EOT
     });
 
     /** Creates a template */
-    yield function () use ($inout, $recipe) {
-        $bootstrap = new Codger\Generate\Bootstrap('list');
-        $recipe->call($bootstrap, 'Foo');
-        $result = $inout->flush();
+    yield function () {
+        $recipe = new Template(['Foo']);
+        $recipe->execute();
+        $result = $recipe->render();
         assert(strpos($result, <<<EOT
 {% extends 'template.html.twig' %}
 
@@ -55,9 +55,10 @@ EOT
     };
     
     /** Creates a view */
-    yield function () use ($inout, $recipe) {
-        $bootstrap = new Codger\Generate\Bootstrap('list');
-        $result = $recipe->call($bootstrap, 'Foo')->render();
+    yield function () {
+        $recipe = new View(['Foo']);
+        $recipe->execute();
+        $result = $recipe->render();
         assert(strpos($result, <<<EOT
 namespace Foo;
 
