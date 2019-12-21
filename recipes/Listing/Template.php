@@ -12,7 +12,7 @@ class Template extends Recipe
 
     public function __invoke(string $path, string $thing) : void
     {
-        $this->setTwigEnvironment(new Environment(new FilesystemLoader(dirname(__DIR__, 3).'/template')));
+        $this->setTwigEnvironment(new Environment(new FilesystemLoader(dirname(__DIR__, 2).'/templates')));
         $this
             ->set('type', strtolower($thing))
             ->set('thing', $thing)
