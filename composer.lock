@@ -4,28 +4,29 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8737d0d779dc3bc94a82a5b8c2bc667c",
+    "content-hash": "3e52c7bd59b93f7d4c9f638cb29facfa",
     "packages": [
         {
             "name": "codger/generate",
-            "version": "0.7.2",
+            "version": "0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codger-php/generate.git",
-                "reference": "32a60f83bba63ee0ea80049f91d74766b67fb221"
+                "reference": "e26336e40d0028e9f965d928401dc491d3f45398"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codger-php/generate/zipball/32a60f83bba63ee0ea80049f91d74766b67fb221",
-                "reference": "32a60f83bba63ee0ea80049f91d74766b67fb221",
+                "url": "https://api.github.com/repos/codger-php/generate/zipball/e26336e40d0028e9f965d928401dc491d3f45398",
+                "reference": "e26336e40d0028e9f965d928401dc491d3f45398",
                 "shasum": ""
             },
             "require": {
+                "monolyth/cliff": "^0.5.1",
                 "php": ">=7.3",
                 "twig/twig": "^2.7"
             },
             "require-dev": {
-                "toast/unit": "^1.3"
+                "toast/unit": "^2.0"
             },
             "bin": [
                 "bin/codger"
@@ -48,28 +49,28 @@
                 }
             ],
             "description": "Code generator, base framework",
-            "time": "2019-10-05T16:16:03+00:00"
+            "time": "2019-12-21T13:11:58+00:00"
         },
         {
             "name": "codger/php",
-            "version": "0.7.4",
+            "version": "0.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codger-php/php.git",
-                "reference": "d532a67994796259bd3ff28ce683169175d70999"
+                "reference": "8f36da2aa8c18bd9ec175688bdd04db835b054e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codger-php/php/zipball/d532a67994796259bd3ff28ce683169175d70999",
-                "reference": "d532a67994796259bd3ff28ce683169175d70999",
+                "url": "https://api.github.com/repos/codger-php/php/zipball/8f36da2aa8c18bd9ec175688bdd04db835b054e4",
+                "reference": "8f36da2aa8c18bd9ec175688bdd04db835b054e4",
                 "shasum": ""
             },
             "require": {
-                "codger/generate": "^0.7.0",
+                "codger/generate": "^0.8.1",
                 "composer/composer": "^1.7"
             },
             "require-dev": {
-                "toast/unit": "^1.3"
+                "toast/unit": "^2.0"
             },
             "type": "library",
             "autoload": {
@@ -88,7 +89,7 @@
                 }
             ],
             "description": "Codger code generator, PHP templates",
-            "time": "2019-10-05T16:20:55+00:00"
+            "time": "2019-12-21T14:54:46+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -457,6 +458,93 @@
                 "schema"
             ],
             "time": "2019-09-25T14:49:45+00:00"
+        },
+        {
+            "name": "monolyth/cliff",
+            "version": "0.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/monolyth-php/cliff.git",
+                "reference": "22fd051995911186117454976db8ef9dd06d80bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/monolyth-php/cliff/zipball/22fd051995911186117454976db8ef9dd06d80bb",
+                "reference": "22fd051995911186117454976db8ef9dd06d80bb",
+                "shasum": ""
+            },
+            "require": {
+                "monomelodies/reflex": "^0.3.0",
+                "php": ">=7.3",
+                "ulrichsg/getopt-php": "^3.2",
+                "zeptech/annotations": "^1.1"
+            },
+            "require-dev": {
+                "toast/unit": "^2.0"
+            },
+            "bin": [
+                "bin/cliff"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Monolyth\\Cliff\\": "./src",
+                    "Monolyth\\Cliff\\Demo\\": "./demo"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marijn Ophorst",
+                    "email": "marijn@monomelodies.nl"
+                }
+            ],
+            "description": "Command line interface for Monolyth unframework",
+            "time": "2019-12-21T07:37:35+00:00"
+        },
+        {
+            "name": "monomelodies/reflex",
+            "version": "0.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/monomelodies/reflex.git",
+                "reference": "70dc4d8980bbb986bd86ec4d9e7112ba3c9728df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/monomelodies/reflex/zipball/70dc4d8980bbb986bd86ec4d9e7112ba3c9728df",
+                "reference": "70dc4d8980bbb986bd86ec4d9e7112ba3c9728df",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3",
+                "zeptech/annotations": "^1.1"
+            },
+            "require-dev": {
+                "toast/unit": "^1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Monomelodies\\Reflex\\": "./src",
+                    "Tests\\": "./classes-for-testing"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marijn Ophorst",
+                    "email": "marijn@monomelodies.nl"
+                }
+            ],
+            "description": "Reflection utilities for PHP7+",
+            "time": "2019-10-05T15:58:17+00:00"
         },
         {
             "name": "psr/container",
@@ -1170,25 +1258,112 @@
                 "templating"
             ],
             "time": "2019-11-11T16:52:09+00:00"
+        },
+        {
+            "name": "ulrichsg/getopt-php",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getopt-php/getopt-php.git",
+                "reference": "373c478d4251a6ad2d42585ab51d58e950713c03"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/getopt-php/getopt-php/zipball/373c478d4251a6ad2d42585ab51d58e950713c03",
+                "reference": "373c478d4251a6ad2d42585ab51d58e950713c03",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8",
+                "squizlabs/php_codesniffer": "^2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GetOpt\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ulrich Schmidt-Goertz",
+                    "email": "ulrich@schmidt-goertz.de"
+                },
+                {
+                    "name": "Thomas Flori",
+                    "email": "thflori@gmail.com"
+                }
+            ],
+            "description": "Command line arguments parser for PHP 5.4 - 7.3",
+            "homepage": "http://getopt-php.github.io/getopt-php",
+            "time": "2019-11-06T06:20:03+00:00"
+        },
+        {
+            "name": "zeptech/annotations",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pgraham/php-annotations.git",
+                "reference": "9cd042daa9ace184d04b49f0605edf73f19a9c71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pgraham/php-annotations/zipball/9cd042daa9ace184d04b49f0605edf73f19a9c71",
+                "reference": "9cd042daa9ace184d04b49f0605edf73f19a9c71",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "zpt\\anno": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Philip Graham",
+                    "email": "philip@zeptech.ca"
+                }
+            ],
+            "description": "DOC Block annotation parsing for PHP",
+            "homepage": "https://github.com/pgraham/php-annotations",
+            "keywords": [
+                "annotations"
+            ],
+            "time": "2013-05-29T02:35:23+00:00"
         }
     ],
     "packages-dev": [
         {
             "name": "gentry/gentry",
-            "version": "0.13.12",
+            "version": "0.13.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gentry-php/gentry.git",
-                "reference": "d12791c9b66b7143d421c651970607c7b9bb8ce4"
+                "reference": "f7fdb9bec1a8362c80f857bd99ce779da243f6f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gentry-php/gentry/zipball/d12791c9b66b7143d421c651970607c7b9bb8ce4",
-                "reference": "d12791c9b66b7143d421c651970607c7b9bb8ce4",
+                "url": "https://api.github.com/repos/gentry-php/gentry/zipball/f7fdb9bec1a8362c80f857bd99ce779da243f6f7",
+                "reference": "f7fdb9bec1a8362c80f857bd99ce779da243f6f7",
                 "shasum": ""
             },
             "require": {
-                "codger/php": "^0.7.0",
+                "codger/php": "^0.8.0",
+                "monolyth/cliff": "^0.5.4",
                 "monomelodies/kingconf": "^1.1.0",
                 "monomelodies/reflex": "^0.3.0",
                 "php": ">=7.3",
@@ -1197,7 +1372,7 @@
                 "zeptech/annotations": "^1.0.0"
             },
             "require-dev": {
-                "toast/unit": "^1.3"
+                "toast/unit": "^2.0"
             },
             "bin": [
                 "bin/gentry"
@@ -1219,7 +1394,7 @@
                 }
             ],
             "description": "PHP unit test generation tools",
-            "time": "2019-11-23T14:39:08+00:00"
+            "time": "2019-12-21T13:55:34+00:00"
         },
         {
             "name": "gentry/toast",
@@ -1298,47 +1473,6 @@
                 "yaml"
             ],
             "time": "2019-06-06T13:16:02+00:00"
-        },
-        {
-            "name": "monomelodies/reflex",
-            "version": "0.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/monomelodies/reflex.git",
-                "reference": "70dc4d8980bbb986bd86ec4d9e7112ba3c9728df"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/monomelodies/reflex/zipball/70dc4d8980bbb986bd86ec4d9e7112ba3c9728df",
-                "reference": "70dc4d8980bbb986bd86ec4d9e7112ba3c9728df",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.3",
-                "zeptech/annotations": "^1.1"
-            },
-            "require-dev": {
-                "toast/unit": "^1.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Monomelodies\\Reflex\\": "./src",
-                    "Tests\\": "./classes-for-testing"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marijn Ophorst",
-                    "email": "marijn@monomelodies.nl"
-                }
-            ],
-            "description": "Reflection utilities for PHP7+",
-            "time": "2019-10-05T15:58:17+00:00"
         },
         {
             "name": "ornament/core",
@@ -1495,16 +1629,16 @@
         },
         {
             "name": "toast/unit",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/toast-php/unit.git",
-                "reference": "8d4a85038bd42162f661f63bba173279bb6573b7"
+                "reference": "3b992a32c895fd0eafd1a10335ec9a32004e39ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/toast-php/unit/zipball/8d4a85038bd42162f661f63bba173279bb6573b7",
-                "reference": "8d4a85038bd42162f661f63bba173279bb6573b7",
+                "url": "https://api.github.com/repos/toast-php/unit/zipball/3b992a32c895fd0eafd1a10335ec9a32004e39ac",
+                "reference": "3b992a32c895fd0eafd1a10335ec9a32004e39ac",
                 "shasum": ""
             },
             "require": {
@@ -1532,47 +1666,7 @@
                 }
             ],
             "description": "Super-simple unit testing for PHP7",
-            "time": "2019-11-08T14:52:41+00:00"
-        },
-        {
-            "name": "zeptech/annotations",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pgraham/php-annotations.git",
-                "reference": "9cd042daa9ace184d04b49f0605edf73f19a9c71"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pgraham/php-annotations/zipball/9cd042daa9ace184d04b49f0605edf73f19a9c71",
-                "reference": "9cd042daa9ace184d04b49f0605edf73f19a9c71",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "zpt\\anno": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD"
-            ],
-            "authors": [
-                {
-                    "name": "Philip Graham",
-                    "email": "philip@zeptech.ca"
-                }
-            ],
-            "description": "DOC Block annotation parsing for PHP",
-            "homepage": "https://github.com/pgraham/php-annotations",
-            "keywords": [
-                "annotations"
-            ],
-            "time": "2013-05-29T02:35:23+00:00"
+            "time": "2019-12-21T13:50:00+00:00"
         }
     ],
     "aliases": [],
