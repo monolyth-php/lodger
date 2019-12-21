@@ -35,7 +35,7 @@ EOT
 
     /** Creates a template */
     yield function () {
-        $recipe = new Template(['Foo']);
+        $recipe = new Template(['Foo/template.html.twig', 'foo']);
         $recipe->execute();
         $result = $recipe->render();
         assert(strpos($result, <<<EOT
