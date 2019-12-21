@@ -1,14 +1,13 @@
 <?php
 
+use Codger\Lodger\Detail\{ View, Template };
 use Gentry\Gentry\Wrapper;
 
-putenv("CODGER_DRY=1");
-$recipe = include 'recipes/detail/Recipe.php';
 $inout = Wrapper::createObject(Codger\Generate\FakeInOut::class);
 Codger\Generate\Recipe::setInOut($inout);
 
 /** Test detail recipe */
-return function () use ($inout, $recipe) : Generator {
+return function () : Generator {
     $this->beforeEach(function () use (&$dir) {
         $dir = getcwd();
         chdir(getcwd().'/tmp');
@@ -34,9 +33,10 @@ EOT
     });
 
     /** Creates a template */
-    yield function () use ($inout, $recipe) {
-        $recipe('Foo');
-        $result = $inout->flush();
+    yield function () {
+        $recipe = new Template(['Foo/template.html.twig', 'foo']);
+        $recipe->execute();
+        $result = $recipe->render();
         assert(strpos($result, <<<EOT
 {% extends 'template.html.twig' %}
 
@@ -54,8 +54,11 @@ EOT
     };
     
     /** Creates a view */
-    yield function () use ($inout, $recipe) {
-        $result = $recipe('Foo')->render();
+    yield function () {
+        $recipe = new View(['Foo']);
+        $recipe->execute();
+        $result = $recipe->render();
+        $result = $recipe->call($bootstrap, 'Foo')->render();
         assert(strpos($result, <<<EOT
 namespace Foo\Detail;
 
