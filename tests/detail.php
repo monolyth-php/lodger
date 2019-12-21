@@ -58,7 +58,6 @@ EOT
         $recipe = new View(['Foo']);
         $recipe->execute();
         $result = $recipe->render();
-        $result = $recipe->call($bootstrap, 'Foo')->render();
         assert(strpos($result, <<<EOT
 namespace Foo\Detail;
 
