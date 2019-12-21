@@ -1,10 +1,11 @@
 <?php
 
-namespace Codger\Lodger;
+namespace Codger\Lodger\Listing;
 
+use Codger\Lodger;
 use Codger\Generate\Language;
 
-class ListView extends View
+class View extends Lodger\View
 {
     public function __invoke(string $namespace) : void
     {
