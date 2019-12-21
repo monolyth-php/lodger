@@ -16,13 +16,12 @@ class View extends Lodger\View
 
     public function __invoke(string $namespace) : void
     {
-        $class = (require dirname(__DIR__).'/view/Recipe.php')->call($this, "$namespace\\Detail", $extends);
         $thing = Language::convert($namespace, Language::TYPE_VARIABLE);
-        if (!isset($template)) {
-            $template = Language::convert($namespace, Language::TYPE_PATH).'/Detail/template.html.twig';
+        if (!isset($this->template)) {
+            $this->template = Language::convert($namespace, Language::TYPE_PATH).'/Detail/template.html.twig';
         }
-        $class->defineProperty($thing, null, 'public', "@var $namespace\\Model")
-            ->defineProperty('template', $template, 'protected', '@var string')
+        $this->defineProperty($thing, null, 'public', "@var $namespace\\Model")
+            ->defineProperty('template', $this->template, 'protected', '@var string')
             ->defineProperty("{$thing}Repository", null, 'protected', "@var $namespace\\Repository")
             ->addMethod('__construct', function(int $id) {}, function (Method $method) use ($thing) : string {
                 $method->setDoccomment(<<<EOT
@@ -42,7 +41,7 @@ EOT;
             ->output(getcwd().'/src/'.Language::convert($namespace, Language::TYPE_PATH).'/Detail/View.php')
             ->setDoccomment("A detail view for $thing");
         if (isset($template)) {
-            $class->delegate('sensi/codger-improse-view@detail/template', $template, $thing);
+            $this->delegate('sensi/codger-improse-view@detail/template', $template, $thing);
         }
     }
 }
