@@ -16,33 +16,33 @@ class View extends Lodger\View
 
     public function __invoke(string $namespace) : void
     {
+        parent::__invoke("$namespace\\Detail");
         $thing = Language::convert($namespace, Language::TYPE_VARIABLE);
-        if (!isset($this->template)) {
-            $this->template = Language::convert($namespace, Language::TYPE_PATH).'/Detail/template.html.twig';
-        }
-        $this->defineProperty($thing, null, 'public', "@var $namespace\\Model")
-            ->defineProperty('template', $this->template, 'protected', '@var string')
-            ->defineProperty("{$thing}Repository", null, 'protected', "@var $namespace\\Repository")
+        $this
+            ->defineProperty($thing, function ($property) use ($namespace) {
+                $property->setDoccomment("@var $namespace\\Model");
+            })
+            ->defineProperty("{$thing}Repository", function ($property) use ($namespace) {
+                $property->setVisibility('protected')
+                    ->setDoccomment("@var $namespace\\Repository");
+            })
+            ->usesNamespaces('Monolyth\Frontal')
             ->addMethod('__construct', function(int $id) {}, function (Method $method) use ($thing) : string {
                 $method->setDoccomment(<<<EOT
-    @var int \$id The id of the $thing to display
-    @return void
-    @throws Monolyth\\Frontal\\Exception if no $thing with \$id was found
+@var int \$id The id of the $thing to display
+@return void
+@throws Monolyth\\Frontal\\Exception if no $thing with \$id was found
 EOT
                 );
                 return <<<EOT
-    parent::__construct();
-    \$this->inject(function (\${$thing}Repository) {});
-    if (!(\$this->$thing = \$this->{$thing}Repository->find(\$id))) {
-        throw new Frontal\\Exception(404, "$thing with id \$id not found");
-    }
+parent::__construct();
+\$this->inject(function (\${$thing}Repository) {});
+if (!(\$this->$thing = \$this->{$thing}Repository->find(\$id))) {
+    throw new Frontal\\Exception(404, "$thing with id \$id not found");
+}
 EOT;
             })
-            ->output(getcwd().'/src/'.Language::convert($namespace, Language::TYPE_PATH).'/Detail/View.php')
             ->setDoccomment("A detail view for $thing");
-        if (isset($template)) {
-            $this->delegate('sensi/codger-improse-view@detail/template', $template, $thing);
-        }
     }
 }
 
