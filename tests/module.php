@@ -16,7 +16,7 @@ return function () use ($inout) : Generator {
     $inout->expect('Y');
     $inout->expect('Y');
     $inout->expect("\n");
-    $recipe = new Codger\Lodger\Module(['Foo', '--table=users', '--vendor=pgsql', '--database=codger_test', '--user=codger_test', '--pass=blarps', '--ornament', '--repository', '--listing', '--detail', '--crud', '--sass', '--form']);
+    $recipe = new Codger\Lodger\Module(['Foo', '--table=users', '--vendor=pgsql', '--database=codger_test', '--user=codger_test', '--pass=blarps', '--ornament', '--repository', '--model', '--listing', '--detail', '--crud', '--sass', '--form']);
     $recipe->execute();
     $recipe->process();
     $output = $inout->flush();
