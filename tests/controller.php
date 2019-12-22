@@ -2,14 +2,13 @@
 
 use Gentry\Gentry\Wrapper;
 
-putenv("CODGER_DRY=1");
-$recipe = include 'recipes/controller/Recipe.php';
-
 /** Controller recipe */
-return function () use ($recipe) : Generator {
+return function () : Generator {
     /** Controller recipe makes us a controller */
-    yield function () use ($recipe) {
-        $result = $recipe('Foo')->render();
+    yield function () {
+        $recipe = new Codger\Lodger\Controller(['Foo']);
+        $recipe->execute();
+        $result = $recipe->render();
         assert(strpos($result, <<<EOT
 namespace Foo;
 
