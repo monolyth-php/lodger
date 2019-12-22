@@ -17,9 +17,18 @@ class View extends Lodger\View
         if (!isset($this->template)) {
             $this->template = Language::convert($namespace, Language::TYPE_PATH).'/template.html.twig';
         }
-        $this->defineProperty($things, null, 'public', '@var array')
-            ->defineProperty('template', $this->template, 'protected', '@var string')
-            ->defineProperty("{$repo}Repository", null, 'protected', "@var $namespace\\Repository")
+        $this->defineProperty($things, function ($property) {
+            $property->setVisibility('public')->setDoccomment('@var array');
+        })
+            ->defineProperty('template', function ($property) {
+                $property->setDefault($this->template)
+                    ->setVisibility('protected')
+                    ->setDoccomment('@var string');
+            })
+            ->defineProperty("{$repo}Repository", function ($property) use ($namespace) {
+                $property->setVisibility('protected')
+                    ->setDoccomment("@var $namespace\\Repository");
+            })
             ->addMethod('__construct', function () use ($things, $repo) : string {
                 return <<<EOT
 parent::__construct();
