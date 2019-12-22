@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e52c7bd59b93f7d4c9f638cb29facfa",
+    "content-hash": "4b960b986fd20a06dc922dead0c8748e",
     "packages": [
         {
             "name": "codger/generate",
@@ -53,16 +53,16 @@
         },
         {
             "name": "codger/php",
-            "version": "0.8.5",
+            "version": "0.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codger-php/php.git",
-                "reference": "2d3df3a66eb59768e21151285bb3274d1724c8d3"
+                "reference": "92b890ce367eaaeb46cef1ecbdf9a330e75e3541"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codger-php/php/zipball/2d3df3a66eb59768e21151285bb3274d1724c8d3",
-                "reference": "2d3df3a66eb59768e21151285bb3274d1724c8d3",
+                "url": "https://api.github.com/repos/codger-php/php/zipball/92b890ce367eaaeb46cef1ecbdf9a330e75e3541",
+                "reference": "92b890ce367eaaeb46cef1ecbdf9a330e75e3541",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,7 @@
                 }
             ],
             "description": "Codger code generator, PHP templates",
-            "time": "2019-12-22T02:45:29+00:00"
+            "time": "2019-12-22T11:04:21+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -1349,20 +1349,20 @@
     "packages-dev": [
         {
             "name": "gentry/gentry",
-            "version": "0.13.14",
+            "version": "0.13.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gentry-php/gentry.git",
-                "reference": "f7fdb9bec1a8362c80f857bd99ce779da243f6f7"
+                "reference": "23dd49eda9d12a5e526005762044d8ddc71610cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gentry-php/gentry/zipball/f7fdb9bec1a8362c80f857bd99ce779da243f6f7",
-                "reference": "f7fdb9bec1a8362c80f857bd99ce779da243f6f7",
+                "url": "https://api.github.com/repos/gentry-php/gentry/zipball/23dd49eda9d12a5e526005762044d8ddc71610cb",
+                "reference": "23dd49eda9d12a5e526005762044d8ddc71610cb",
                 "shasum": ""
             },
             "require": {
-                "codger/php": "^0.8.0",
+                "codger/php": "^0.9.0",
                 "monolyth/cliff": "^0.5.4",
                 "monomelodies/kingconf": "^1.1.0",
                 "monomelodies/reflex": "^0.3.0",
@@ -1394,7 +1394,7 @@
                 }
             ],
             "description": "PHP unit test generation tools",
-            "time": "2019-12-21T13:55:34+00:00"
+            "time": "2019-12-22T09:45:49+00:00"
         },
         {
             "name": "gentry/toast",
