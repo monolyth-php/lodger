@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "codger/generate",
-            "version": "0.9.0",
+            "version": "0.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codger-php/generate.git",
-                "reference": "1c63062777068a2aecde633d2290df5f603c5e64"
+                "reference": "777cce60761693c14cc9b6b4947b893dfb1cb446"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codger-php/generate/zipball/1c63062777068a2aecde633d2290df5f603c5e64",
-                "reference": "1c63062777068a2aecde633d2290df5f603c5e64",
+                "url": "https://api.github.com/repos/codger-php/generate/zipball/777cce60761693c14cc9b6b4947b893dfb1cb446",
+                "reference": "777cce60761693c14cc9b6b4947b893dfb1cb446",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,7 @@
                 }
             ],
             "description": "Code generator, base framework",
-            "time": "2019-12-22T14:01:24+00:00"
+            "time": "2019-12-22T14:37:37+00:00"
         },
         {
             "name": "codger/php",
