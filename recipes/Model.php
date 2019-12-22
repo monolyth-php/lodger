@@ -2,10 +2,10 @@
 
 namespace Codger\Lodger;
 
-use Codger\Php\Klass;
-use Codger\Php\Composer;
+use Codger\Php\{ Klass, Composer };
 use Codger\Generate\Language;
 use Monolyth\Lodger\AccessesDatabase;
+use PDO;
 
 if (file_exists(getcwd().'/src/dependencies.php')) {
     require_once(getcwd().'/src/dependencies.php');
