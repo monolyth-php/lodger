@@ -3,12 +3,11 @@
 use Gentry\Gentry\Wrapper;
 
 putenv("CODGER_DRY=1");
-$recipe = new Codger\Lodger\Module(['Foo']);
 $inout = Wrapper::createObject(Codger\Generate\FakeInOut::class);
 Codger\Generate\Recipe::setInOut($inout);
 
 /** Test module recipe */
-return function () use ($recipe, $inout) : Generator {
+return function () use ($inout) : Generator {
     $inout->expect('Y');
     $inout->expect('Y');
     $inout->expect('Y');
@@ -17,7 +16,9 @@ return function () use ($recipe, $inout) : Generator {
     $inout->expect('Y');
     $inout->expect('Y');
     $inout->expect("\n");
-    $recipe('Foo', 'users', 'pgsql', 'codger_test', 'blarps');
+    $recipe = new Codger\Lodger\Module(['Foo', '--table=users', '--vendor=pgsql', '--database=codger_test', '--user=codger_test', '--pass=blarps', '--ornament', '--repository', '--listing', '--detail', '--crud', '--sass', '--form']);
+    $recipe->execute();
+    $recipe->process();
     $output = $inout->flush();
 
     /** Creates a model */
