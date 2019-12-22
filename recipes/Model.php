@@ -166,13 +166,17 @@ class Model extends Klass
         foreach ($columns as $column) {
             $type = null;
             switch ($column['column_type']) {
-                case 'bigint': $type = 'int'; break;
+                case 'bigint': case 'integer': $type = 'int'; break;
                 case 'text': case 'timestamp': case 'timestamp with time zone': $type = 'string'; break;
                 case 'boolean': $type = 'bool'; break;
                 case 'float': case 'double precision': $type = 'float'; break;
                 case 'ARRAY': $type = 'array'; break;
             }
-            $this->defineProperty($column['column_name'], null, 'public', isset($type) ? "@var $type" : null);
+            $this->defineProperty($column['column_name'], function ($property) use ($type) {
+                if (isset($type)) {
+                    $property->setDoccomment("@var $type");
+                }
+            });
         }
     }
 }
