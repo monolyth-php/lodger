@@ -2,17 +2,16 @@
 
 use Gentry\Gentry\Wrapper;
 
-putenv("CODGER_DRY=1");
-
-$recipe = include 'recipes/repository/Recipe.php';
 $inout = new Codger\Generate\FakeInOut;
 Codger\Generate\Recipe::setInOut($inout);
 
 /** Test repository recipe */
-return function () use ($recipe, $inout) : Generator {
+return function () : Generator {
     /** Create a Foo repository with all expected operations */
-    yield function () use ($recipe, $inout) {
-        $result = $recipe('Foo')->render();
+    yield function () {
+        $recipe = new Codger\Lodger\Repository(['Foo', '--table=foo']);
+        $recipe->execute();
+        $result = $recipe->render();
         assert(strpos($result, 'namespace Foo;') !== false);
         
         /** Find method */
