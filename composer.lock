@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "codger/generate",
-            "version": "0.8.5",
+            "version": "0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codger-php/generate.git",
-                "reference": "e26336e40d0028e9f965d928401dc491d3f45398"
+                "reference": "1c63062777068a2aecde633d2290df5f603c5e64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codger-php/generate/zipball/e26336e40d0028e9f965d928401dc491d3f45398",
-                "reference": "e26336e40d0028e9f965d928401dc491d3f45398",
+                "url": "https://api.github.com/repos/codger-php/generate/zipball/1c63062777068a2aecde633d2290df5f603c5e64",
+                "reference": "1c63062777068a2aecde633d2290df5f603c5e64",
                 "shasum": ""
             },
             "require": {
@@ -49,24 +49,24 @@
                 }
             ],
             "description": "Code generator, base framework",
-            "time": "2019-12-21T13:11:58+00:00"
+            "time": "2019-12-22T14:01:24+00:00"
         },
         {
             "name": "codger/php",
-            "version": "0.9.5",
+            "version": "0.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codger-php/php.git",
-                "reference": "92b890ce367eaaeb46cef1ecbdf9a330e75e3541"
+                "reference": "227643616107bd925f7d00e4b6f98382bf672133"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codger-php/php/zipball/92b890ce367eaaeb46cef1ecbdf9a330e75e3541",
-                "reference": "92b890ce367eaaeb46cef1ecbdf9a330e75e3541",
+                "url": "https://api.github.com/repos/codger-php/php/zipball/227643616107bd925f7d00e4b6f98382bf672133",
+                "reference": "227643616107bd925f7d00e4b6f98382bf672133",
                 "shasum": ""
             },
             "require": {
-                "codger/generate": "^0.8.1",
+                "codger/generate": "^0.9.0",
                 "composer/composer": "^1.7"
             },
             "require-dev": {
@@ -89,7 +89,7 @@
                 }
             ],
             "description": "Codger code generator, PHP templates",
-            "time": "2019-12-22T11:04:21+00:00"
+            "time": "2019-12-22T14:09:31+00:00"
         },
         {
             "name": "composer/ca-bundle",
