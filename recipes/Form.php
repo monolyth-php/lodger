@@ -6,7 +6,7 @@ use Codger\Php\{ Klass, Composer };
 use Codger\Generate\Language;
 use Monolyth\Disclosure\{ Container, NotFoundException };
 use Twig\{ Environment, Loader\FilesystemLoader };
-use Monolyth\Lodger\AccesesDatabase;
+use Monolyth\Lodger\AccessesDatabase;
 
 if (file_exists(getcwd().'/src/dependencies.php')) {
     require_once(getcwd().'/src/dependencies.php');
