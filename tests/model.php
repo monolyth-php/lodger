@@ -18,7 +18,8 @@ return function () : Generator {
 namespace User;
 
 class Model
-{}
+{
+}
 EOT
         ) !== false);
     };
@@ -35,11 +36,15 @@ namespace User;
 
 class Model
 {
+    /** @var int */
     public \$id;
+
     /** @var string */
     public \$username;
+
     /** @var string */
     public \$password;
+
     /** @var string */
     public \$description;
 }
