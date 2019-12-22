@@ -5,9 +5,6 @@ namespace Codger\Lodger;
 use Codger\Php\Klass;
 use Codger\Php\Composer;
 use Codger\Generate\Language;
-use Monolyth\Disclosure\Container;
-use Monolyth\Disclosure\NotFoundException;
-use PDO;
 
 if (file_exists(getcwd().'/src/dependencies.php')) {
     require_once(getcwd().'/src/dependencies.php');
@@ -21,20 +18,10 @@ if (file_exists(getcwd().'/src/dependencies.php')) {
  */
 class Model extends Klass
 {
+    use AccessesDatabase;
+
     /** @var string */
     public $table;
-
-    /** @var string */
-    public $vendor;
-
-    /** @var string */
-    public $database;
-
-    /** @var string */
-    public $user;
-
-    /** @var string */
-    public $pass;
     
     /** @var bool */
     public $ornament = false;
@@ -42,26 +29,11 @@ class Model extends Klass
     /** @var bool */
     public $skipPrefill = false;
 
-    /** @var PDO */
-    private $pdo;
-
     public function __invoke(string $name) : void
     {
         $this->name = Language::convert($name, Language::TYPE_PHP_NAMESPACE);
-        if (!isset($this->table)) {
+        if (!$this->skipPrefill && !isset($this->table)) {
             $this->checkTable();
-        }
-        if (!$this->skipPrefill && !isset($this->vendor)) {
-            $this->getVendor();
-        }
-        if (!$this->skipPrefill) {
-            if (class_exists(Container::class)) {
-                if (!$this->attemptCredentialsFromEnvy()) {
-                    $this->checkDatabase();
-                }
-            } else {
-                $this->checkDatabase();
-            }
         }
         if (strlen($this->name)) {
             $this->setNamespace($this->name);
@@ -89,66 +61,12 @@ class Model extends Klass
         });
     }
 
-    private function getVendor() : void
-    {
-        $this->options("What database vendor is used?", ['m' => 'MySQL', 'p' => 'PostgreSQL'], function (string $vendor) {
-            switch ($vendor) {
-                case 'p':
-                    $this->vendor = "pgsql";
-                    break;
-                case 'm':
-                    $this->vendor = "mysql";
-                    break;
-            }
-        });
-    }
-
-    private function attemptCredentialsFromEnvy() : bool
-    {
-        try {
-            $container = new Container;
-            $env = $container->get('env');
-            $this->database = $this->database ?? $env->db['name'];
-            $this->user = $this->user ?? $env->db['user'];
-            $this->pass = $this->pass ?? $env->db['pass'];
-            return true;
-        } catch (NotFoundException $e) {
-            return false;
-        } catch (ErrorException $e) {
-            return false;
-        }
-    }
-
-    private function checkDatabase() : void
-    {
-        if (!isset($this->database)) {
-            $this->ask('Name of the database?', function (string $database) : void {
-                $this->database = $database;
-            });
-        }
-        if (!isset($this->user)) {
-            $this->ask('User?', function (string $user) : void {
-                $this->user = $user;
-            });
-        }
-        if (!isset($this->pass)) {
-            $this->ask('Password?', function (string $pass) : void {
-                $this->pass = $pass;
-            });
-        }
-        try {
-            $this->pdo = new PDO("{$this->vendor}:dbname={$this->database}", $this->user, $this->pass);
-        } catch (PDOException $e) {
-            $this->error("Fatal: permission denied to {$this->database} for user {$this->user} with password {$this->pass}.\n");
-            exit(6);
-        }
-    }
-
     private function prefillProperties() : void
     {
+        $pdo = $this->getPdoFromSuppliedCredentials();
         switch ($this->vendor) {
             case 'pgsql':
-                $stmt = $this->pdo->prepare(
+                $stmt = $pdo->prepare(
                     "SELECT
                         column_name,
                         column_default,
