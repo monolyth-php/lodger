@@ -66,8 +66,10 @@ class View extends \View
 {
     /** @var array */
     public \$foos;
+
     /** @var string */
     protected \$template = 'Foo/template.html.twig';
+
     /** @var Foo\Repository */
     protected \$fooRepository;
 
