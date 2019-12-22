@@ -61,13 +61,17 @@ EOT
         assert(strpos($result, <<<EOT
 namespace Foo\Detail;
 
+use Monolyth\Frontal;
+
 /** A detail view for foo */
 class View extends \View
 {
-    /** @var string */
-    protected \$template = 'Foo/Detail/template.html.twig';
     /** @var Foo\Model */
     public \$foo;
+
+    /** @var string */
+    protected \$template = 'Foo/Detail/template.html.twig';
+
     /** @var Foo\Repository */
     protected \$fooRepository;
 
