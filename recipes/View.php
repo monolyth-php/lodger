@@ -12,13 +12,7 @@ use Codger\Generate\Language;
 class View extends Klass
 {
     /** @var string */
-    public $extends;
-
-    /** @var string */
     public $template;
-
-    /** @var array */
-    public $uses = [];
 
     /**
      * Pass the namespace to place this view in. The special namespace 'global'
@@ -30,8 +24,8 @@ class View extends Klass
     public function __invoke(string $namespace) : void
     {
         $isGlobal = $namespace == 'global';
-        if (!isset($this->extends)) {
-            $this->extends = '\View';
+        if (!isset($this->extends) && !$isGlobal) {
+            $this->extendsClass('\View');
         }
         if (!$isGlobal) {
             $namespace = Language::convert($namespace, Language::TYPE_PHP_NAMESPACE);
@@ -40,10 +34,19 @@ class View extends Klass
             $this->template = Language::convert($namespace, Language::TYPE_PATH).'/template.html.twig';
         }
         if (!$isGlobal) {
-            $this->output(getcwd().'/src/'.Language::convert($namespace, Language::TYPE_PATH).'/View.php');
-            $this->defineProperty('template', $this->template, 'protected', '@var string');
+            $this->output(getcwd().'/src/'.Language::convert($namespace, Language::TYPE_PATH).'/View.php')
+                ->defineProperty('template', function ($property) {
+                    $property->setDefault($this->template)
+                        ->setVisibility('protected')
+                        ->setDoccomment('@var string');
+                });
         } else {
             $this->output(getcwd().'/src/View.php')
+                ->defineProperty('template', function ($property) {
+                    $property->setDefault('template.html.twig')
+                        ->setVisibility('protected')
+                        ->setDoccomment('@var string');
+                })
                 ->isAbstract();
         }
         if (!$isGlobal) {
@@ -53,9 +56,6 @@ class View extends Klass
             $this->extendsClass($extends);
         }
         $this->setName('View');
-        if ($this->uses) {
-            $this->usesNamespaces(...$this->uses);
-        }
     }
 }
 
