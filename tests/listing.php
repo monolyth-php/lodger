@@ -64,10 +64,10 @@ namespace Foo;
 
 class View extends \View
 {
-    /** @var string */
-    protected \$template = 'Foo/template.html.twig';
     /** @var array */
     public \$foos;
+    /** @var string */
+    protected \$template = 'Foo/template.html.twig';
     /** @var Foo\Repository */
     protected \$fooRepository;
 
