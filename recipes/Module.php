@@ -27,17 +27,52 @@ class Module extends Recipe
     /** @var string $pass */
     public $pass;
 
+    /** @var string bool */
+    public $repository = false;
+
+    /** @var string bool */
+    public $model = false;
+
+    /** @var string bool */
+    public $listing = false;
+
+    /** @var string bool */
+    public $detail = false;
+
+    /** @var string bool */
+    public $crud = false;
+
+    /** @var string bool */
+    public $sass = false;
+
+    /** @var string bool */
+    public $form = false;
+
     public function __invoke(string $name)
     {
         $this->setTwigEnvironment(new Environment(new FilesystemLoader(__DIR__)));
         $namespaceName = Language::convert($name, Language::TYPE_PHP_NAMESPACE);
-        $this->wrap("Add a repository?", 'Codger\Lodger\Repository', $namespaceName);
-        $this->wrap("Add a model?", 'Codger\Lodger\Model', $namespaceName, $this->table, $this->vendor, $this->database, $this->user, $this->pass, ...$options);
-        $this->wrap("Add a list view?", 'Codger\Lodger\ListView', $namespaceName);
-        $this->wrap("Add a detail view?", 'Codger\Lodger\DetailView', $namespaceName);
-        $this->wrap("Add a CRUD controller?", 'Codger\Lodger\Controller', $namespaceName);
-        $this->wrap("Add SASS?", 'Codger\Lodger\Sass', $namespaceName);
-        $this->wrap("Add a form?", 'Codger\Lodger\Form', $namespaceName, $table, $vendor, $database, $user, $pass);
+        if ($this->repository) {
+            $this->delegate('Codger\Lodger\Repository', $namespaceName);
+        }
+        if ($this->model) {
+            $this->delegate('Codger\Lodger\Model', $namespaceName, $this->table, $this->vendor, $this->database, $this->user, $this->pass);
+        }
+        if ($this->listing) {
+            $this->delegate('Codger\Lodger\Listing\View', $namespaceName);
+        }
+        if ($this->detail) {
+            $this->delegate('Codger\Lodger\Detail\View', $namespaceName);
+        }
+        if ($this->crud) {
+            $this->delegate('Codger\Lodger\Controller', $namespaceName);
+        }
+        if ($this->sass) {
+            $this->delegate('Codger\Lodger\Sass', $namespaceName);
+        }
+        if ($this->form) {
+            $this->delegate('Codger\Lodger\Form', $namespaceName, $table, $vendor, $database, $user, $pass);
+        }
         $route = Language::convert($name, Language::TYPE_URL);
         $this->info(<<<EOT
     Add a route for this module to access it over HTTP, e.g.:
@@ -79,15 +114,6 @@ class Module extends Recipe
     });
 EOT
         );
-    }
-    
-    private function wrap(string $question, string $task, ...$options)
-    {
-        $this->options($question, ['Y' => 'Yes', 'n' => 'No'], function (string $answer) use ($task, $options) {
-            if ($answer == 'Y') {
-                $this->delegate($task, ...$options);
-            }
-        });
     }
 }
 
