@@ -21,6 +21,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Monolyth\\Codger\\": "./src",
             "Codger\\Lodger\\": "./recipes"
         }
     }
