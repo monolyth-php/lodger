@@ -28,25 +28,25 @@ class Module extends Recipe
     public $pass;
 
     /** @var bool */
-    public $repository = false;
+    public $skipRepository = false;
 
     /** @var bool */
-    public $model = false;
+    public $skipModel = false;
 
     /** @var bool */
-    public $listing = false;
+    public $skipListing = false;
 
     /** @var bool */
-    public $detail = false;
+    public $skipDetail = false;
 
     /** @var bool */
-    public $crud = false;
+    public $skipCrud = false;
 
     /** @var bool */
-    public $sass = false;
+    public $skipSass = false;
 
     /** @var bool */
-    public $form = false;
+    public $skipForm = false;
 
     /** @var bool */
     public $skipPrefill = false;
@@ -58,10 +58,10 @@ class Module extends Recipe
     {
         $this->setTwigEnvironment(new Environment(new FilesystemLoader(__DIR__)));
         $namespaceName = Language::convert($name, Language::TYPE_PHP_NAMESPACE);
-        if ($this->repository) {
+        if (!$this->skipRepository) {
             $this->delegate(Repository::class, [$namespaceName]);
         }
-        if ($this->model) {
+        if (!$this->skipModel) {
             $arguments = [$namespaceName];
             foreach (['table', 'vendor', 'database', 'user', 'pass'] as $argument) {
                 if (isset($this->$argument)) {
@@ -75,21 +75,21 @@ class Module extends Recipe
             }
             $this->delegate(Model::class, $arguments);
         }
-        if ($this->listing) {
+        if (!$this->skipListing) {
             $this->delegate(Listing\View::class, [$namespaceName]);
             $this->delegate(Listing\Template::class, [Language::convert($name, Language::TYPE_PATH), Language::convert($name, Language::TYPE_VARIABLE)]);
         }
-        if ($this->detail) {
+        if (!$this->skipDetail) {
             $this->delegate(Detail\View::class, [$namespaceName]);
             $this->delegate(Detail\Template::class, [Language::convert($name, Language::TYPE_PATH), Language::convert($name, Language::TYPE_VARIABLE)]);
         }
-        if ($this->crud) {
+        if (!$this->skipCrud) {
             $this->delegate(Controller::class, [$namespaceName]);
         }
-        if ($this->sass) {
+        if (!$this->skipSass) {
             $this->delegate(Sass::class, [$namespaceName]);
         }
-        if ($this->form) {
+        if (!$this->skipForm) {
             $arguments = [$namespaceName];
             foreach (['table', 'vendor', 'database', 'user', 'pass'] as $argument) {
                 if (isset($this->$argument)) {
