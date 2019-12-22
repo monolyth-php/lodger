@@ -12,66 +12,91 @@ use Twig\{ Environment, Loader\FilesystemLoader };
  */
 class Module extends Recipe
 {
-    /** @var string $table */
+    /** @var string */
     public $table;
 
-    /** @var string $vendor */
-    public $vender;
+    /** @var string */
+    public $vendor;
 
-    /** @var string $database */
+    /** @var string */
     public $database;
 
-    /** @var string $user */
+    /** @var string */
     public $user;
 
-    /** @var string $pass */
+    /** @var string */
     public $pass;
 
-    /** @var string bool */
+    /** @var bool */
     public $repository = false;
 
-    /** @var string bool */
+    /** @var bool */
     public $model = false;
 
-    /** @var string bool */
+    /** @var bool */
     public $listing = false;
 
-    /** @var string bool */
+    /** @var bool */
     public $detail = false;
 
-    /** @var string bool */
+    /** @var bool */
     public $crud = false;
 
-    /** @var string bool */
+    /** @var bool */
     public $sass = false;
 
-    /** @var string bool */
+    /** @var bool */
     public $form = false;
+
+    /** @var bool */
+    public $skipPrefill = false;
+
+    /** @var bool */
+    public $ornament = false;
 
     public function __invoke(string $name)
     {
         $this->setTwigEnvironment(new Environment(new FilesystemLoader(__DIR__)));
         $namespaceName = Language::convert($name, Language::TYPE_PHP_NAMESPACE);
         if ($this->repository) {
-            $this->delegate('Codger\Lodger\Repository', $namespaceName);
+            $this->delegate('Codger\Lodger\Repository', [$namespaceName]);
         }
         if ($this->model) {
-            $this->delegate('Codger\Lodger\Model', $namespaceName, $this->table, $this->vendor, $this->database, $this->user, $this->pass);
+            $arguments = [$namespaceName];
+            foreach (['table', 'vendor', 'database', 'user', 'pass'] as $argument) {
+                if (isset($this->$argument)) {
+                    $arguments[] = "--$argument={$this->$argument}";
+                }
+            }
+            foreach (['skipPrefill', 'ornament'] as $argument) {
+                if ($this->$argument) {
+                    $arguments[] = "--$argument";
+                }
+            }
+            $this->delegate('Codger\Lodger\Model', $arguments);
         }
         if ($this->listing) {
-            $this->delegate('Codger\Lodger\Listing\View', $namespaceName);
+            $this->delegate('Codger\Lodger\Listing\View', [$namespaceName]);
+            $this->delegate('Codger\Lodger\Listing\Template', [Language::convert($name, Language::TYPE_PATH), Language::convert($name, Language::TYPE_VARIABLE)]);
         }
         if ($this->detail) {
-            $this->delegate('Codger\Lodger\Detail\View', $namespaceName);
+            $this->delegate('Codger\Lodger\Detail\View', [$namespaceName]);
+            $this->delegate('Codger\Lodger\Detail\Template', [Language::convert($name, Language::TYPE_PATH), Language::convert($name, Language::TYPE_VARIABLE)]);
         }
         if ($this->crud) {
-            $this->delegate('Codger\Lodger\Controller', $namespaceName);
+            $this->delegate('Codger\Lodger\Controller', [$namespaceName]);
         }
         if ($this->sass) {
-            $this->delegate('Codger\Lodger\Sass', $namespaceName);
+            $this->delegate('Codger\Lodger\Sass', [$namespaceName]);
         }
         if ($this->form) {
-            $this->delegate('Codger\Lodger\Form', $namespaceName, $table, $vendor, $database, $user, $pass);
+            $arguments = [$namespaceName];
+            foreach (['table', 'vendor', 'database', 'user', 'pass'] as $argument) {
+                if (isset($this->$argument)) {
+                    $arguments[] = "--$argument={$this->$argument}";
+                }
+            }
+            $this->delegate('Codger\Lodger\Form', $arguments);
         }
         $route = Language::convert($name, Language::TYPE_URL);
         $this->info(<<<EOT
