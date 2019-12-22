@@ -59,7 +59,7 @@ class Module extends Recipe
         $this->setTwigEnvironment(new Environment(new FilesystemLoader(__DIR__)));
         $namespaceName = Language::convert($name, Language::TYPE_PHP_NAMESPACE);
         if ($this->repository) {
-            $this->delegate('Codger\Lodger\Repository', [$namespaceName]);
+            $this->delegate(Repository::class, [$namespaceName]);
         }
         if ($this->model) {
             $arguments = [$namespaceName];
@@ -73,21 +73,21 @@ class Module extends Recipe
                     $arguments[] = "--$argument";
                 }
             }
-            $this->delegate('Codger\Lodger\Model', $arguments);
+            $this->delegate(Model::class, $arguments);
         }
         if ($this->listing) {
-            $this->delegate('Codger\Lodger\Listing\View', [$namespaceName]);
-            $this->delegate('Codger\Lodger\Listing\Template', [Language::convert($name, Language::TYPE_PATH), Language::convert($name, Language::TYPE_VARIABLE)]);
+            $this->delegate(Listing\View::class, [$namespaceName]);
+            $this->delegate(Listing\Template::class, [Language::convert($name, Language::TYPE_PATH), Language::convert($name, Language::TYPE_VARIABLE)]);
         }
         if ($this->detail) {
-            $this->delegate('Codger\Lodger\Detail\View', [$namespaceName]);
-            $this->delegate('Codger\Lodger\Detail\Template', [Language::convert($name, Language::TYPE_PATH), Language::convert($name, Language::TYPE_VARIABLE)]);
+            $this->delegate(Detail\View::class, [$namespaceName]);
+            $this->delegate(Detail\Template::class, [Language::convert($name, Language::TYPE_PATH), Language::convert($name, Language::TYPE_VARIABLE)]);
         }
         if ($this->crud) {
-            $this->delegate('Codger\Lodger\Controller', [$namespaceName]);
+            $this->delegate(Controller::class, [$namespaceName]);
         }
         if ($this->sass) {
-            $this->delegate('Codger\Lodger\Sass', [$namespaceName]);
+            $this->delegate(Sass::class, [$namespaceName]);
         }
         if ($this->form) {
             $arguments = [$namespaceName];
@@ -96,7 +96,7 @@ class Module extends Recipe
                     $arguments[] = "--$argument={$this->$argument}";
                 }
             }
-            $this->delegate('Codger\Lodger\Form', $arguments);
+            $this->delegate(Form::class, $arguments);
         }
         $route = Language::convert($name, Language::TYPE_URL);
         $this->info(<<<EOT
