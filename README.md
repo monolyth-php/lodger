@@ -52,7 +52,3 @@ nothing in the realm of permission checking.
 ### `lodger/form`
 Generate a Formulaic form to go with the module.
 
-### `lodger/sass`
-Like repositories, SASS is of course not technically part of Monolyth - you can
-write your CSS however you like. But it is the de facto standard these days.
-
