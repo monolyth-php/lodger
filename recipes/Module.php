@@ -43,9 +43,6 @@ class Module extends Recipe
     public $skipCrud = false;
 
     /** @var bool */
-    public $skipSass = false;
-
-    /** @var bool */
     public $skipForm = false;
 
     /** @var bool */
@@ -85,9 +82,6 @@ class Module extends Recipe
         }
         if (!$this->skipCrud) {
             $this->delegate(Controller::class, [$namespaceName]);
-        }
-        if (!$this->skipSass) {
-            $this->delegate(Sass::class, [$namespaceName]);
         }
         if (!$this->skipForm) {
             $arguments = [$namespaceName];
