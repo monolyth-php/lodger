@@ -11,11 +11,11 @@
     ],
     "require": {
         "php": ">=7.3",
-        "codger/php": "^0.9.5"
+        "codger/php": "^0.9.8"
     },
     "require-dev": {
         "toast/unit": "^2.0",
-        "gentry/gentry": "^0.13.14",
+        "gentry/gentry": "^0.13.16",
         "gentry/toast": "^0.1.0",
         "ornament/core": "^0.14.0"
     },
