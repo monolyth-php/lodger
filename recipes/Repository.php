@@ -6,6 +6,9 @@ use Codger\Php\Klass;
 use Codger\Php\Method;
 use Codger\Generate\Language;
 
+/**
+ * Generate a Monolyth-style repository.
+ */
 class Repository extends Klass
 {
     /** @var string */
