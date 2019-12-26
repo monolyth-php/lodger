@@ -19,7 +19,7 @@
         "gentry/toast": "^0.1.0",
         "ornament/core": "^0.14.0"
     },
-    "autoload-dev": {
+    "autoload": {
         "psr-4": {
             "Monolyth\\Lodger\\": "./src",
             "Codger\\Lodger\\": "./recipes"
