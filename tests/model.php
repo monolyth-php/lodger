@@ -5,7 +5,6 @@ use Codger\Lodger\Model;
 
 $inout = Wrapper::createObject(Codger\Generate\FakeInOut::class);
 Codger\Generate\Recipe::setInOut($inout);
-putenv("CODGER_DRY=1");
 
 /** Test model recipe */
 return function () : Generator {
