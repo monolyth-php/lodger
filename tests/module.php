@@ -2,7 +2,6 @@
 
 use Gentry\Gentry\Wrapper;
 
-putenv("CODGER_DRY=1");
 $inout = Wrapper::createObject(Codger\Generate\FakeInOut::class);
 Codger\Generate\Recipe::setInOut($inout);
 
