@@ -112,7 +112,7 @@ try {
 }
 EOT;
             })
-            ->output(getcwd().'/src/'.Language::convert($name, Language::TYPE_PATH).'/Repository.php')
+            ->output(Language::convert($name, Language::TYPE_PATH).'/Repository.php')
             ->info(<<<EOT
 Don't forget to register a dependency for this repository, e.g.
 
