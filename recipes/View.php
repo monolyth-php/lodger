@@ -34,14 +34,14 @@ class View extends Klass
             $this->template = Language::convert($namespace, Language::TYPE_PATH).'/template.html.twig';
         }
         if (!$isGlobal) {
-            $this->output(getcwd().'/src/'.Language::convert($namespace, Language::TYPE_PATH).'/View.php')
+            $this->output(Language::convert($namespace, Language::TYPE_PATH).'/View.php')
                 ->defineProperty('template', function ($property) {
                     $property->setDefault($this->template)
                         ->setVisibility('protected')
                         ->setDoccomment('@var string');
                 });
         } else {
-            $this->output(getcwd().'/src/View.php')
+            $this->output('View.php')
                 ->defineProperty('template', function ($property) {
                     $property->setDefault('template.html.twig')
                         ->setVisibility('protected')
