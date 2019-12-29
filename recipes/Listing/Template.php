@@ -17,7 +17,7 @@ class Template extends Recipe
             ->set('type', strtolower($thing))
             ->set('thing', $thing)
             ->set('things', Language::pluralize($thing))
-            ->output(getcwd()."/src/$path");
+            ->output($path);
     }
 }
 
