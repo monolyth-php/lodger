@@ -52,8 +52,8 @@ class View extends Klass
         if (!$isGlobal) {
             $this->setNamespace($namespace);
         }
-        if ($this->extends) {
-            $this->extendsClass($extends);
+        if (isset($this->extends)) {
+            $this->extendsClass($this->extends);
         }
         $this->setName('View');
     }
