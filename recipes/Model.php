@@ -7,10 +7,6 @@ use Codger\Generate\Language;
 use Monolyth\Lodger\AccessesDatabase;
 use PDO;
 
-if (file_exists(getcwd().'/src/dependencies.php')) {
-    require_once(getcwd().'/src/dependencies.php');
-}
-
 /**
  * Generate a model. Inspects the database to guesstimate properties. Database
  * credentials are supplied via the various options, but are optional if the
