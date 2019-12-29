@@ -40,7 +40,7 @@ class Model extends Klass
             $this->setNamespace($this->name);
         }
         $this->setName('Model')
-            ->output(getcwd().'/src/'.Language::convert($name, Language::TYPE_PATH).'/Model.php');
+            ->output(Language::convert($name, Language::TYPE_PATH).'/Model.php');
         if ($this->ornament) {
             $composer = new Composer;
             $this->usesNamespaces('Ornament\Core')
