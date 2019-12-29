@@ -78,7 +78,7 @@ EOT
 
 EOT;
             })
-            ->output(getcwd().'/src/'.Language::convert($namespace, Language::TYPE_PATH).'/Controller.php');
+            ->output(Language::convert($namespace, Language::TYPE_PATH).'/Controller.php');
     }
 }
 
