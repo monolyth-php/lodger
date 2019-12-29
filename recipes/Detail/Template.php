@@ -15,7 +15,7 @@ class Template extends Recipe
         $this
            ->set('type', strtolower($thing))
             ->set('thing', $thing)
-            ->output(getcwd()."/src/$path");
+            ->output($path);
     }
 }
 
