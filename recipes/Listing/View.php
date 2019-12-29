@@ -36,7 +36,7 @@ parent::__construct();
 \$this->{$things} = \$this->{$repo}Repository->all();
 EOT;
             })
-            ->output(getcwd().'/src/'.Language::convert($namespace, Language::TYPE_PATH).'/View.php');
+            ->output(Language::convert($namespace, Language::TYPE_PATH).'/View.php');
     }
 }
 
