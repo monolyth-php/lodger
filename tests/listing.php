@@ -3,7 +3,6 @@
 use Gentry\Gentry\Wrapper;
 use Codger\Lodger\Listing\{ View, Template };
 
-putenv("CODGER_DRY=1");
 $inout = Wrapper::createObject(Codger\Generate\FakeInOut::class);
 Codger\Generate\Recipe::setInOut($inout);
 
