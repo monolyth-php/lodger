@@ -3,7 +3,6 @@
 namespace Monolyth\Lodger;
 
 use PDO;
-use Monolyth\Disclosure\{ Container, NotFoundException };
 
 trait AccessesDatabase
 {
@@ -25,16 +24,6 @@ trait AccessesDatabase
             $this->options("What database vendor is used?", ['mysql' => 'MySQL', 'pgsql' => 'PostgreSQL'], function (string $vendor) {
                 $this->vendor = $vendor;
             });
-        }
-        if (class_exists(Container::class)) {
-            try {
-                $container = new Container;
-                $env = $container->get('env');
-                $this->database = $this->database ?? $env->db['name'];
-                $this->user = $this->user ?? $env->db['user'];
-                $this->pass = $this->pass ?? $env->db['pass'];
-            } catch (NotFoundException $e) {
-            }
         }
         if (!isset($this->database)) {
             $this->ask('Name of the database?', function (string $database) : void {
