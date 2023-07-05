@@ -37,7 +37,6 @@ class Form extends Klass
         $this->setNamespace($name);
         $this->setName('Form')
             ->output(Language::convert($name, Language::TYPE_PATH).'/Form.php');
-        $composer = new Composer;
         if (!$this->skipPrefill) {
             switch ($this->vendor) {
                 case 'pgsql':
