@@ -12,44 +12,31 @@ use Twig\{ Environment, Loader\FilesystemLoader };
  */
 class Module extends Recipe
 {
-    /** @var string */
-    public $table;
+    public string $table;
 
-    /** @var string */
-    public $vendor;
+    public string $vendor;
 
-    /** @var string */
-    public $database;
+    public string $database;
 
-    /** @var string */
-    public $user;
+    public string $user;
 
-    /** @var string */
-    public $pass;
+    public string $pass;
 
-    /** @var bool */
-    public $skipRepository = false;
+    public bool $skipRepository = false;
 
-    /** @var bool */
-    public $skipModel = false;
+    public bool $skipModel = false;
 
-    /** @var bool */
-    public $skipListing = false;
+    public bool $skipListing = false;
 
-    /** @var bool */
-    public $skipDetail = false;
+    public bool $skipDetail = false;
 
-    /** @var bool */
-    public $skipCrud = false;
+    public bool $skipCrud = false;
 
-    /** @var bool */
-    public $skipForm = false;
+    public bool $skipForm = false;
 
-    /** @var bool */
-    public $skipPrefill = false;
+    public bool $skipPrefill = false;
 
-    /** @var bool */
-    public $ornament = false;
+    public bool $ornament = false;
 
     public function __invoke(string $name)
     {
