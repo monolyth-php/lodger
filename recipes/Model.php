@@ -17,14 +17,13 @@ class Model extends Klass
 {
     use AccessesDatabase;
 
-    /** @var string */
-    public $table;
+    public string $table;
     
-    /** @var bool */
-    public $ornament = false;
+    public bool $ornament = false;
 
-    /** @var bool */
-    public $skipPrefill = false;
+    public bool $skipPrefill = false;
+
+    protected string $name;
 
     public function __invoke(string $name) : void
     {
