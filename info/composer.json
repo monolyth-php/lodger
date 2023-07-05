@@ -1,0 +1,13 @@
+{
+    "name": "codger/dummy",
+    "description": "Dummy config.json",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marijn Ophorst",
+            "email": "marijn@monomelodies.nl"
+        }
+    ],
+    "require": {}
+}
