@@ -6,7 +6,7 @@ use Gentry\Gentry\Wrapper;
 return function () : Generator {
     /** Controller recipe makes us a controller */
     yield function () {
-        $recipe = new Codger\Lodger\Controller(['Foo']);
+        $recipe = new Wrapper(new Codger\Lodger\Controller(['Foo']));
         $recipe->execute();
         $result = $recipe->render();
         assert(strpos($result, <<<EOT
