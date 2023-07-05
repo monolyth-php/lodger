@@ -16,7 +16,7 @@ return function () use ($inout) : Generator {
     $inout->expect('Y');
     $inout->expect("\n");
     $recipe = new Wrapper(new Codger\Lodger\Module([
-        'Foo', '--table=users', '--vendor=pgsql', '--database=codger_test', '--user=codger_test', '--pass=blarps', '--ornament',
+        'Foo', '--table=users', '--vendor=pgsql', '--database=codger_test', '--user=codger_test', '--pass=blarps', '--ornament', '--composer-dir=tmp',
     ]));
     $recipe->execute();
     $recipe->process();
