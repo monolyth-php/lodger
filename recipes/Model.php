@@ -23,6 +23,8 @@ class Model extends Klass
 
     public bool $skipPrefill = false;
 
+    public ?string $composerDir = null;
+
     protected string $name;
 
     public function __invoke(string $name) : void
@@ -37,7 +39,7 @@ class Model extends Klass
         $this->setName('Model')
             ->output(Language::convert($name, Language::TYPE_PATH).'/Model.php');
         if ($this->ornament) {
-            $composer = new Composer;
+            $composer = new Composer($this->composerDir);
             $this->usesNamespaces('Ornament\Core')
                 ->usesTraits('Core\Model');
             $composer->addDependency('ornament/core');
