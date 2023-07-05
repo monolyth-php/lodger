@@ -10,14 +10,13 @@
         }
     ],
     "require": {
-        "php": ">=7.3",
-        "codger/php": "^0.9.8"
+        "php": ">=8",
+        "codger/php": "^0.9.11"
     },
     "require-dev": {
         "toast/unit": "^2.0",
-        "gentry/gentry": "^0.13.16",
-        "gentry/toast": "^0.1.0",
-        "ornament/core": "^0.14.0"
+        "gentry/gentry": "^0.16.9",
+        "gentry/toast": "^0.1.0"
     },
     "autoload": {
         "psr-4": {
