@@ -11,8 +11,7 @@ use Codger\Generate\Language;
  */
 class Repository extends Klass
 {
-    /** @var string */
-    public $table;
+    public string $table;
 
     public function __invoke(string $name) : void
     {
@@ -36,80 +35,17 @@ class Repository extends Klass
         $this->setNamespace($name)
             ->setName('Repository')
             ->usesNamespaces(
-                'Monolyth\\Disclosure\\Injector',
-                'Quibble\\Query\\{ SelectException, InsertException, UpdateException, DeleteException }',
-                'ReflectionObject',
-                'ReflectionProperty',
-                'PDO'
+                'Sensimedia\\Supportery\\DatabaseRepository',
             )
-            ->usesTraits('Injector')
-            ->defineProperty('adapter', null, 'private')
-            ->addMethod('__construct', function (Method $method) : string {
-                return <<<EOT
-\$this->inject(function (\$adapter) {});
-EOT;
-            })
+            ->extendsClass('DatabaseRepository')
             ->addMethod('all', function () : array {}, function (Method $method) : string {
                 return <<<EOT
-try {
-    return \$this->adapter->selectFrom('{$this->table}')
-        ->fetchAll(PDO::FETCH_CLASS, Model::class);
-} catch (SelectException \$e) {
-    return [];
-}
+return \$this->list(\$this->select());
 EOT;
             })
             ->addMethod('find', function (int $id) :? \Model {}, function (Method $method) : string {
                 return <<<EOT
-try {
-    return \$this->adapter->selectFrom('{$this->table}')
-        ->where('id = ?', \$id)
-        ->fetchObject(Model::class);
-} catch (SelectException \$e) {
-    return null;
-}
-EOT;
-            })
-            ->addMethod('save', function (\Model &$model) :? string {}, function (Method $method) : string {
-                return <<<EOT
-\$data = [];
-\$reflection = new ReflectionObject(\$model);
-foreach (\$reflection->getProperties(ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED & ~ReflectionProperty::IS_STATIC) as \$property) {
-    \$property->setAccessible(true);
-    if (\$property->name != 'id' && (isset(\$model->id) || !is_null(\$property->getValue(\$model)))) {
-        \$data[\$property->name] = \$property->getValue(\$model);
-    }
-}
-try {
-    if (isset(\$model->id)) {
-        \$this->adapter->updateTable('{$this->table}')
-            ->where('id = ?', \$model->id)
-            ->execute(\$data);
-        \$model = \$this->find(\$model->id);
-    } else {
-        \$this->adapter->insertInto('{$this->table}')
-            ->execute(\$data);
-        \$model = \$this->find(\$this->adapter->lastInsertId('{$this->table}'));
-    }
-    return null;
-} catch (InsertException \$e) {
-    return 'insert';
-} catch (UpdateException \$e) {
-    return 'update';
-}
-EOT;
-            })
-            ->addMethod('delete', function (\Model &$model) :? string {}, function (Method $method) : string {
-                return <<<EOT
-try {
-    \$this->adapter->deleteFrom('{$this->table}')
-        ->where('id = ?', \$model->id)
-        ->execute();
-    \$model = null;
-    return null;
-} catch (DeleteException \$e) {
-    return 'database';
-}
+return \$this->findByIdentifier(\$id);
 EOT;
             })
             ->output(Language::convert($name, Language::TYPE_PATH).'/Repository.php')
