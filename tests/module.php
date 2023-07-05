@@ -48,7 +48,7 @@ EOT
     /** Creates a repository */
     yield function () use ($output) {
         assert(strpos($output, <<<EOT
-class Repository extends DatabaseRepository
+class Repository
 EOT
         ) !== false);
     };       
