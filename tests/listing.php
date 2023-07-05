@@ -3,7 +3,7 @@
 use Gentry\Gentry\Wrapper;
 use Codger\Lodger\Listing\{ View, Template };
 
-$inout = Wrapper::createObject(Codger\Generate\FakeInOut::class);
+$inout = new Codger\Generate\FakeInOut;
 Codger\Generate\Recipe::setInOut($inout);
 
 /** Test list recipe */
@@ -34,7 +34,7 @@ EOT
 
     /** Creates a template */
     yield function () {
-        $recipe = new Template(['Foo/template.html.twig', 'foo']);
+        $recipe = new Wrapper(new Template(['Foo/template.html.twig', 'foo']));
         $recipe->execute();
         $result = $recipe->render();
         assert(strpos($result, <<<EOT
@@ -55,7 +55,7 @@ EOT
     
     /** Creates a view */
     yield function () {
-        $recipe = new View(['Foo']);
+        $recipe = new Wrapper(new View(['Foo']));
         $recipe->execute();
         $result = $recipe->render();
         assert(strpos($result, <<<EOT
