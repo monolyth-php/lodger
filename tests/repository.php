@@ -19,32 +19,44 @@ return function () : Generator {
     /** We have the correct general class definition */
     yield function () use ($result) {
         assert(strpos($result, <<<EOT
-use Sensimedia\Supportery\DatabaseRepository;
-
-class Repository extends DatabaseRepository
+class Repository
 {
 EOT
         ) !== false);
     };
 
-    /** We get an `all` method shorthand */
+    /** We get an `all` method */
     yield function () use ($result) {
         assert(strpos($result, <<<EOT
     public function all() : array
     {
-        return \$this->list(\$this->select());
-    }
 EOT
         ) !== false);
     };
 
-    /** We get a `find` method shorthand */
+    /** We get a `find` method */
     yield function () use ($result) {
         assert(strpos($result, <<<EOT
     public function find(int \$id) :? Model
     {
-        return \$this->findByIdentifier(\$id);
-    }
+EOT
+        ) !== false);
+    };
+
+    /** We get a `save` method */
+    yield function () use ($result) {
+        assert(strpos($result, <<<EOT
+    public function save(Model \$model) :? string
+    {
+EOT
+        ) !== false);
+    };
+
+    /** We get a `delete` method */
+    yield function () use ($result) {
+        assert(strpos($result, <<<EOT
+    public function delete(Model \$model) :? string
+    {
 EOT
         ) !== false);
     };
