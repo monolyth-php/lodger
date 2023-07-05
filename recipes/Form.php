@@ -16,11 +16,9 @@ class Form extends Klass
 {
     use AccessesDatabase;
 
-    /** @var string */
-    public $table;
+    public string $table;
 
-    /** @var bool */
-    public $skipPrefill = false;
+    public bool $skipPrefill = false;
 
     public function __invoke(string $name) : void
     {
