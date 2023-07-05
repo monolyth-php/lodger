@@ -6,17 +6,13 @@ use PDO;
 
 trait AccessesDatabase
 {
-    /** @var string */
-    public $vendor;
+    public string $vendor;
 
-    /** @var string */
-    public $database;
+    public string $database;
 
-    /** @var string */
-    public $user;
+    public string $user;
 
-    /** @var string */
-    public $pass;
+    public string $pass;
 
     protected function getPdoFromSuppliedCredentials() : PDO
     {
