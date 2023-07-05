@@ -8,11 +8,9 @@ use Codger\Generate\Language;
 
 class View extends Lodger\View
 {
-    /** @var string */
-    public $extends;
+    public string $extends;
 
-    /** @var string */
-    public $template;
+    public string $template;
 
     public function __invoke(string $namespace) : void
     {
