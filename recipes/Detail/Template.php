@@ -7,7 +7,7 @@ use Twig\{ Environment, Loader\FilesystemLoader };
 
 class Template extends Recipe
 {
-    protected $_template = 'detail.html.twig';
+    protected string $_template = 'detail.html.twig';
 
     public function __invoke(string $path, string $thing) : void
     {
