@@ -2,7 +2,7 @@
 
 use Gentry\Gentry\Wrapper;
 
-$inout = Wrapper::createObject(Codger\Generate\FakeInOut::class);
+$inout = new Codger\Generate\FakeInOut;
 Codger\Generate\Recipe::setInOut($inout);
 
 /** Test module recipe */
@@ -15,7 +15,9 @@ return function () use ($inout) : Generator {
     $inout->expect('Y');
     $inout->expect('Y');
     $inout->expect("\n");
-    $recipe = new Codger\Lodger\Module(['Foo', '--table=users', '--vendor=pgsql', '--database=codger_test', '--user=codger_test', '--pass=blarps', '--ornament']);
+    $recipe = new Wrapper(new Codger\Lodger\Module([
+        'Foo', '--table=users', '--vendor=pgsql', '--database=codger_test', '--user=codger_test', '--pass=blarps', '--ornament',
+    ]));
     $recipe->execute();
     $recipe->process();
     $output = $inout->flush();
@@ -46,15 +48,7 @@ EOT
     /** Creates a repository */
     yield function () use ($output) {
         assert(strpos($output, <<<EOT
-namespace Foo;
-
-use Monolyth\Disclosure\Injector;
-use Quibble\Query\{ SelectException, InsertException, UpdateException, DeleteException };
-use ReflectionObject;
-use ReflectionProperty;
-use PDO;
-
-class Repository
+class Repository extends DatabaseRepository
 EOT
         ) !== false);
     };       
