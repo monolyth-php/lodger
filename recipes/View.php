@@ -11,8 +11,7 @@ use Codger\Generate\Language;
  */
 class View extends Klass
 {
-    /** @var string */
-    public $template;
+    public string $template;
 
     /**
      * Pass the namespace to place this view in. The special namespace 'global'
