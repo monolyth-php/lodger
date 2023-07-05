@@ -34,12 +34,6 @@ class Repository extends Klass
         }
         $this->setNamespace($name)
             ->setName('Repository')
-            ->defineProperty('adapter', null, 'private')
-            ->addMethod('__construct', function (Method $method) : string {
-                return <<<EOT
-\$this->inject(function (\$adapter) {});
-EOT;
-            })
             ->addMethod('all', function () : array {}, function (Method $method) : string {
                 return <<<EOT
 throw new \\LogicException("This method is not yet implemented.");
@@ -47,14 +41,15 @@ EOT;
             })
             ->addMethod('find', function (int $id) :? \Model {}, function (Method $method) : string {
                 return <<<EOT
+throw new \\LogicException("This method is not yet implemented.");
 EOT;
             })
-            ->addMethod('save', function (\Model $model, array $includeFields = []) :? string {}, function (Method $method) : string {
+            ->addMethod('save', function (\Model $model) :? string {}, function (Method $method) : string {
                 return <<<EOT
 throw new \\LogicException("This method is not yet implemented.");
 EOT;
             })
-            ->addMethod('delete', function (\Model &$model) :? string {}, function (Method $method) : string {
+            ->addMethod('delete', function (\Model $model) :? string {}, function (Method $method) : string {
                 return <<<EOT
 throw new \\LogicException("This method is not yet implemented.");
 EOT;
