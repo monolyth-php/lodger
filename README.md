@@ -31,7 +31,10 @@ tend to use repositories for all (database) storage operations - i.e., insert,
 update, delete and select.
 
 Generated repositories hold basic common methods such as `save`, `all` and
-`find`.
+`find`. However, the implementation is up to you. If your repositories follow a
+common structure, we recommend extending a base class instead. For
+database-based storage, have a look at the `DatabaseRepositorhy` in
+`sensimedia\supporty`.
 
 ### `lodger/view`
 Generate a generic (page) view.
@@ -45,9 +48,10 @@ Generate a view and template for a "detail view". This is where you end up when
 you click on one of the listing links ;)
 
 ### `lodger/controller`
-Generate a generic CRUD controller. The generate `create`, `update` and `delete`
-methods work out of the box with the corresponding repository, but of course do
-nothing in the realm of permission checking.
+Generate a generic CRUD controller. The generated `create`, `update` and
+`delete` methods work out of the box with the corresponding repository, but of
+course do nothing yet since we aren't dictating how you should store your data
+(or handle permissions, for that matter).
 
 ### `lodger/form`
 Generate a Formulaic form to go with the module.
