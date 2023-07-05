@@ -38,6 +38,8 @@ class Module extends Recipe
 
     public bool $ornament = false;
 
+    public ?string $composerDir = null;
+
     public function __invoke(string $name)
     {
         $this->setTwigEnvironment(new Environment(new FilesystemLoader(__DIR__)));
@@ -56,6 +58,9 @@ class Module extends Recipe
                 if ($this->$argument) {
                     $arguments[] = "--$argument";
                 }
+            }
+            if (isset($this->composerDir)) {
+                $arguments[] = "--composer-dir={$this->composerDir}";
             }
             $this->delegate(Model::class, $arguments);
         }
