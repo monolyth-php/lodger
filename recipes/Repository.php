@@ -11,8 +11,7 @@ use Codger\Generate\Language;
  */
 class Repository extends Klass
 {
-    /** @var string */
-    public $table;
+    public string $table;
 
     public function __invoke(string $name) : void
     {
