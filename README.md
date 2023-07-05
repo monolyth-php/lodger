@@ -33,8 +33,9 @@ update, delete and select.
 Generated repositories hold basic common methods such as `save`, `all` and
 `find`. However, the implementation is up to you. If your repositories follow a
 common structure, we recommend extending a base class instead. For
-database-based storage, have a look at the `DatabaseRepositorhy` in
-`sensimedia\supporty`.
+database-based storage, have a look at the `DatabaseRepository` in
+`sensimedia\supporty`. It plays very nicely with Monolyth, but does make some
+assumptions based on how Sensi Media (my company) builds its projects.
 
 ### `lodger/view`
 Generate a generic (page) view.
